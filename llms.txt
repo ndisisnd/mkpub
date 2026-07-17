@@ -1,0 +1,37 @@
+# mkpub
+
+> A Claude Code skill that writes the four files a repo needs before it goes public:
+> README.md, LICENSE.md, SECURITY.md, and llms.txt.
+
+mkpub is markdown, not code — there is nothing to build, run, or test. `SKILL.md` is a
+router: it holds the rules that apply to every mode, then dispatches to one
+`refs/protocol-*.md` per mode. To change what a mode does, edit its protocol. To change
+something that applies everywhere, edit SKILL.md. The only binary assets are four figlet
+`.flf` fonts under `refs/fonts/`.
+
+The design constraint worth knowing before you change anything: mkpub is not allowed to
+invent facts. No fabricated benchmarks, no guessed license, no unverified install command,
+no badge URL that doesn't resolve. Anything not derivable from the repo gets scaffolded
+with an HTML comment or asked about via AskUserQuestion. Most of the prose in the
+protocols exists to enforce that.
+
+## Docs
+
+- [README](README.md): what mkpub does, install, how it works, FAQ
+- [SKILL.md](.claude/skills/mkpub/SKILL.md): the router — hard rules, context-gathering, collision and scaffolding policy. Start here.
+- [voice.md](.claude/skills/mkpub/refs/voice.md): the prose rules for generated READMEs. Read before writing any user-facing prose; the constraints change sentence construction, so applying them after drafting means rewriting.
+
+## Reference
+
+One protocol per mode. Each is self-contained — read only the one you need.
+
+- [protocol-readme.md](.claude/skills/mkpub/refs/protocol-readme.md): `--readme`. The figlet header mechanics, the four bundled fonts, badgen rules, and the seven required sections.
+- [protocol-license.md](.claude/skills/mkpub/refs/protocol-license.md): `--license`. How to ask, how to recommend by repo type, resolving the copyright line, MIT text inline and SPDX fetch for the long ones.
+- [protocol-security.md](.claude/skills/mkpub/refs/protocol-security.md): `--security`. Resolving a real reporting channel, supported-version tables, and writing an honest Scope section.
+- [protocol-llms.md](.claude/skills/mkpub/refs/protocol-llms.md): `--llms`. The format of this file, and why link descriptions carry the weight.
+- [protocol-update.md](.claude/skills/mkpub/refs/protocol-update.md): `--update`. Diff semantics — what counts as drift, what's the user's wording and stays untouched.
+
+## Optional
+
+- [LICENSE.md](LICENSE.md): MIT
+- [SECURITY.md](SECURITY.md): how to report a vulnerability privately

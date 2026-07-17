@@ -1,0 +1,10 @@
+{
+  "initialized": true,
+  "init_commit": null,
+  "changelog": {
+    "path": "CHANGELOG.md",
+    "protocol": null
+  },
+  "release_guard": true,
+  "gate_mode": "flash"
+}
