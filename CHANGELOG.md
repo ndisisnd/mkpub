@@ -4,6 +4,10 @@ All notable changes to this project will be documented here.
 
 ## 2026-07-18
 
+### [6] — See mkpub credited in its own README's acknowledgments
+
+- `README.md`: Added — a line crediting mkpub itself for generating this README
+
 ### [5] — See a real example screenshot, and get automatic credit when mkpub writes your README
 
 - `README.md`: Added — an example screenshot in the how-it-works section

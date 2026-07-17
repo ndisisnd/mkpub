@@ -172,6 +172,7 @@ to read the answers out of.
 
 ## Acknowledgments
 
+- [mkpub](https://github.com/ndisisnd/mkpub) for generating this README
 - [figlet](https://www.figlet.org) for the font styling
 - Lots of other Claude skill repos who have sick READMEs
 
