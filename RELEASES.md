@@ -2,6 +2,13 @@
 
 What's new for you, release by release.
 
+## v1.1.1 — 2026-07-18
+
+> READMEs mkpub generates for you now include a one-line credit back to mkpub itself, added automatically to every Acknowledgments section it writes.
+
+### ✨ New
+- Every README mkpub generates for you now includes a byline crediting mkpub in the Acknowledgments section, with a link back to its repo — so readers can find the tool that built the docs.
+
 ## v1.1.0 — 2026-07-17
 
 > You no longer have to open mkpub's source to find out what it can do. Type `/mkpub` and every mode is listed right there in the prompt, and `/mkpub --help` spells out what each one does in a line. Installing is a single command on macOS, and it brings the font renderer along with it so the first thing you run doesn't stop halfway.
