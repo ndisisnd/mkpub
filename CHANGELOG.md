@@ -4,6 +4,16 @@ All notable changes to this project will be documented here.
 
 ## 2026-07-17
 
+### [2] — Discover mkpub's modes from the prompt, and install it globally in one command
+
+- `.claude/skills/mkpub/SKILL.md`: Added — `argument-hint` frontmatter, so typing `/mkpub` surfaces every flag in autocomplete
+  - Added — `--help` mode listing each mode with a one-line descriptor; short-circuits the scan, questions and protocol reads
+  - Changed — mode tables gained a "What it does" column, making them the single source `--help` prints from
+  - Fixed — `--init` row said "run each protocol below in order", which read as table order and put README first, contradicting Step 3
+- `install.sh`: Added — global macOS installer; runs from a clone or curl-piped, installs figlet via Homebrew, re-runs upgrade in place
+- `README.md`: Changed — document both install paths and `--help`; modes badge 6 → 7
+- `llms.txt`: Changed — index `install.sh`
+
 ### [1] — Generate a repo's four public-facing docs from a scan of the repo itself
 
 - `.claude/skills/mkpub/SKILL.md`: Added — skill entrypoint, usage flags and protocol dispatch

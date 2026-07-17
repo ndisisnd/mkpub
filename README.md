@@ -13,7 +13,7 @@
 
 <p align="center">
   <a href="LICENSE.md"><img src="https://badgen.net/badge/license/MIT/blue" alt="License: MIT"></a>
-  <img src="https://badgen.net/badge/modes/6/8B5CF6" alt="6 modes">
+  <img src="https://badgen.net/badge/modes/7/8B5CF6" alt="7 modes">
   <img src="https://badgen.net/badge/fonts/4%20bundled/6C5CE7" alt="4 bundled fonts">
   <img src="https://badgen.net/badge/deps/figlet/grey" alt="Depends on figlet">
 </p>
@@ -49,30 +49,41 @@ works, how to update it, an FAQ, the license, and acknowledgments.
 - **`--llms`** — `llms.txt`, an index for agents landing in the repo
 - **`--update`** — checks all four against the repo and refreshes what drifted
 - **`--init`** — all four (this is also what running with no arguments does)
+- **`--help`** — the mode menu, one line each
 
 Flags combine. `/mkpub --readme --llms` runs both.
 
 ## Installation
 
+On macOS, the install script copies the skill into `~/.claude/skills` and installs `figlet`
+with Homebrew if it's missing:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/ndisisnd/mkpub/main/install.sh | bash
+```
+
+Or, from a clone:
+
+```bash
+git clone https://github.com/ndisisnd/mkpub.git && cd mkpub && ./install.sh
+```
+
+Either way it's global — every project gets `/mkpub`. Re-running it upgrades in place.
+
+The cross-platform install works too, and doesn't touch figlet:
+
 ```bash
 npx skills add ndisisnd/mkpub
 ```
 
-Then run `/mkpub` in Claude Code.
+Then run `/mkpub --help` in Claude Code.
 
-mkpub needs `figlet` for the README header. Everything else it uses — `git`, `curl` — you
-already have:
+**figlet** is the one dependency, and only `--readme` needs it — everything else mkpub uses
+(`git`, `curl`) you already have. The install script handles it on macOS; elsewhere:
 
 ```bash
-brew install figlet        # macOS
 sudo apt install figlet    # Debian, Ubuntu
 sudo dnf install figlet    # Fedora
-```
-
-Verify it worked:
-
-```bash
-figlet -v      # any version is fine
 ```
 
 If figlet is missing, mkpub tells you rather than falling back silently. The four header
@@ -120,13 +131,14 @@ your own words are usually the most valuable thing in an existing README.
 
 ## How to update
 
-**Updating mkpub itself** — re-run the install; it overwrites the skill in place:
+**Updating mkpub itself**:
 
 ```bash
+curl -fsSL https://raw.githubusercontent.com/ndisisnd/mkpub/main/install.sh | bash
 npx skills add ndisisnd/mkpub
 ```
 
-**Updating the files mkpub wrote** — this is what `--update` is for:
+**Updating the files mkpub wrote**:
 
 ```
 /mkpub --update
@@ -136,26 +148,13 @@ It re-scans the repo, compares it against what the four files claim, and refresh
 what drifted: version numbers, install commands, renamed skills, dead links, the
 copyright year, the supported-version table.
 
-`--update` is a diff, not a rewrite. A claim that's still true doesn't get touched, even
-if mkpub would phrase it differently — your wording isn't drift. It's looking for false
-statements, not improvable ones. Anything you chose rather than derived (license type,
-tagline, audience) needs a question before it changes.
+`--update` is a diff, not a rewrite. 
 
 ## FAQ
 
 **Why bundle the fonts instead of using figlet's?**
 
-None of the four ship with a stock figlet install. `ansi_shadow` — the default, and the
-one that reads like a logo — isn't there, so a skill that assumed it would silently fall
-back to `standard` and produce a header that looks like it worked. Bundling four `.flf`
-files costs about 40KB and means the header renders identically everywhere.
-
-**Why does it always ask about the license, even when `package.json` says MIT?**
-
-That field is a leftover default more often than it's a decision. Licensing has
-consequences you have to live with, and relicensing later can need every contributor's
-consent, so mkpub confirms rather than infers. It recommends one — MIT for skill repos and
-libraries — and puts it first.
+None of the four ship with a stock figlet install. 
 
 **What if I already have a README I like?**
 
@@ -175,12 +174,6 @@ Yes. The scan looks for `package.json`, `pyproject.toml`, `Cargo.toml`, `ARCHITE
 and the rest before it looks for skills, and falls back to walking the file tree. Skill
 repos are just the case it's tuned for, because they're the case where there's no manifest
 to read the answers out of.
-
-**What about TOIlet, or other fonts?**
-
-If `toilet` is already installed, mkpub will offer its `.tlf` fonts. It won't ask you to
-install it — that's a big ask for a cosmetic choice on a docs file. Its color filters are
-skipped either way, since ANSI escape codes don't render on GitHub.
 
 ## License
 

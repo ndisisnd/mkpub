@@ -33,5 +33,6 @@ One protocol per mode. Each is self-contained — read only the one you need.
 
 ## Optional
 
+- [install.sh](install.sh): macOS global installer. Copies the skill to `~/.claude/skills/mkpub` from a clone or, when piped from curl, from a shallow clone in a temp dir. Installs figlet via Homebrew if missing.
 - [LICENSE.md](LICENSE.md): MIT
 - [SECURITY.md](SECURITY.md): how to report a vulnerability privately

@@ -1,6 +1,7 @@
 ---
 name: mkpub
 description: Generates and updates a repository's four public-facing docs — README.md, LICENSE.md, SECURITY.md, and llms.txt — from a scan of the repo itself. The README uses a figlet-rendered centered header and badgen badges. Use when the user says "write a README", "generate docs for this repo", "add a license", "add a security policy", "add llms.txt", "/mkpub", or asks to document a repository or skill for release.
+argument-hint: "[--init] [--readme] [--license] [--security] [--llms] [--update] [--desc] [--tag] [--help]"
 ---
 
 # mkpub
@@ -15,27 +16,38 @@ protocol for each mode you're running, and read nothing else.
 
 **Writes files:**
 
-| Invocation | Protocol |
-|---|---|
-| `/mkpub` or `/mkpub --init` | All four — run each protocol below in order |
-| `/mkpub --readme` | `refs/protocol-readme.md` |
-| `/mkpub --license` | `refs/protocol-license.md` |
-| `/mkpub --security` | `refs/protocol-security.md` |
-| `/mkpub --llms` | `refs/protocol-llms.md` |
-| `/mkpub --update` | `refs/protocol-update.md` |
+| Invocation | What it does | Protocol |
+|---|---|---|
+| `/mkpub` or `/mkpub --init` | All four files, README written last | every protocol below — see Step 3 for order |
+| `/mkpub --readme` | `README.md` — figlet header, badges, seven sections | `refs/protocol-readme.md` |
+| `/mkpub --license` | `LICENSE.md` — asks which license first, never infers | `refs/protocol-license.md` |
+| `/mkpub --security` | `SECURITY.md` — reporting channel and supported versions | `refs/protocol-security.md` |
+| `/mkpub --llms` | `llms.txt` — an index for agents landing in the repo | `refs/protocol-llms.md` |
+| `/mkpub --update` | Re-scans and refreshes only what actually drifted | `refs/protocol-update.md` |
 
 **Prints to the terminal only — writes nothing:**
 
-| Invocation | Protocol |
-|---|---|
-| `/mkpub --desc` | `refs/protocol-desc.md` |
-| `/mkpub --tag` | `refs/protocol-tag.md` |
+| Invocation | What it does | Protocol |
+|---|---|---|
+| `/mkpub --desc` | A GitHub repo description, ready to paste | `refs/protocol-desc.md` |
+| `/mkpub --tag` | GitHub topic tags, ready to paste | `refs/protocol-tag.md` |
+| `/mkpub --help` | This menu | none — see below |
 
 Flags combine: `/mkpub --readme --llms` runs both protocols. `--init` does **not** include
 `--desc` or `--tag` — they produce no files, so there's nothing for an init to create.
 
 `refs/voice.md` is shared, and `protocol-readme.md` requires it. It does **not** apply to
 `--desc` or `--tag`, which have their own register.
+
+### `--help`
+
+List every mode from both tables above — one line each, invocation then its "What it does"
+text, writes-files modes first — then stop. Drop the Protocol column; it's internal. Close
+with the one-liner that flags combine and that `/mkpub` alone means `--init`.
+
+`--help` short-circuits everything: no scan, no questions, no files, no protocol reads. It
+wins over any flag combined with it — `/mkpub --readme --help` prints the menu and does not
+write a README.
 
 ## Hard rules
 
@@ -52,11 +64,13 @@ These hold across every mode.
 5. **`--desc` and `--tag` never touch the filesystem.** They print and stop. Don't write
    the output anywhere, don't offer to, don't ask where it should go. GitHub's description
    and topics fields are the destination and only the user can paste into them.
+6. **`--help` is free.** It answers from this file alone. Reaching for a tool to serve a
+   `--help` is a bug.
 
 ## Step 1 — Gather context
 
-Every mode starts here. Read whichever exist, in this order. Stop once you can describe
-the repo in two sentences.
+Every mode except `--help` starts here. Read whichever exist, in this order. Stop once you
+can describe the repo in two sentences.
 
 ```
 README.md  README.rst  docs/README.md      # existing prose — highest signal
