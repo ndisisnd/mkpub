@@ -4,6 +4,12 @@ All notable changes to this project will be documented here.
 
 ## 2026-07-17
 
+### [3] — Know upfront that the quickest install needs figlet separately
+
+- `README.md`: Changed — condensed the intro, and led the install section with `npx` as the preferred path
+  - Fixed — `npx` skips `figlet`, which `--readme` requires, and the trimmed section no longer said so; added the install commands for macOS and Linux
+  - Fixed — typo in the opening sentence ("top write" → "to write")
+
 ### [2] — Discover mkpub's modes from the prompt, and install it globally in one command
 
 - `.claude/skills/mkpub/SKILL.md`: Added — `argument-hint` frontmatter, so typing `/mkpub` surfaces every flag in autocomplete

@@ -34,10 +34,7 @@
 
 ## What it does
 
-mkpub reads your repository, asks about the things it can't work out on its own, and
-writes the four files a stranger needs when they land on your repo cold. It was built for
-skill repos — where the product is markdown and there's no package to point at — but it
-works on any repository.
+`mkpub` reads your repository to write a readme, license, security, and llms file. Works on any repo. It checks for preferred files first (e.g. existing files, ARCHITECTURE.md, CLAUDE.md etc.) and clarifies for anything it doesn't know.
 
 The README it generates has a fixed shape: a centered figlet title, a tagline, a badgen
 badge row, and seven sections covering what the project does, how to install it, how it
@@ -55,8 +52,16 @@ Flags combine. `/mkpub --readme --llms` runs both.
 
 ## Installation
 
-On macOS, the install script copies the skill into `~/.claude/skills` and installs `figlet`
-with Homebrew if it's missing:
+Preferred installation: 
+```bash
+npx skills add ndisisnd/mkpub
+```
+
+This doesn't install `figlet`, which `--readme` needs — `brew install figlet` on macOS, or
+`sudo apt install figlet` / `sudo dnf install figlet` on Linux.
+
+On macOS, the install script does both — it copies the skill into `~/.claude/skills` and
+installs `figlet` with Homebrew if it's missing:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/ndisisnd/mkpub/main/install.sh | bash
@@ -68,27 +73,7 @@ Or, from a clone:
 git clone https://github.com/ndisisnd/mkpub.git && cd mkpub && ./install.sh
 ```
 
-Either way it's global — every project gets `/mkpub`. Re-running it upgrades in place.
-
-The cross-platform install works too, and doesn't touch figlet:
-
-```bash
-npx skills add ndisisnd/mkpub
-```
-
 Then run `/mkpub --help` in Claude Code.
-
-**figlet** is the one dependency, and only `--readme` needs it — everything else mkpub uses
-(`git`, `curl`) you already have. The install script handles it on macOS; elsewhere:
-
-```bash
-sudo apt install figlet    # Debian, Ubuntu
-sudo dnf install figlet    # Fedora
-```
-
-If figlet is missing, mkpub tells you rather than falling back silently. The four header
-fonts ship with the skill, so there's nothing else to install and the header renders the
-same on every machine.
 
 ## How it works
 
