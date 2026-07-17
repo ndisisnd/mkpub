@@ -4,6 +4,10 @@ All notable changes to this project will be documented here.
 
 ## 2026-07-17
 
+### [4] — Read what shipped in v1.1.0 without digging through commits
+
+- `RELEASES.md`: Added — a v1.1.0 section written for users, covering the new argument hints, `--help` mode and one-command macOS installer, plus the install-docs and ordering fixes
+
 ### [3] — Know upfront that the quickest install needs figlet separately
 
 - `README.md`: Changed — condensed the intro, and led the install section with `npx` as the preferred path

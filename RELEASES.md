@@ -2,6 +2,21 @@
 
 What's new for you, release by release.
 
+## v1.1.0 — 2026-07-17
+
+> You no longer have to open mkpub's source to find out what it can do. Type `/mkpub` and every mode is listed right there in the prompt, and `/mkpub --help` spells out what each one does in a line. Installing is a single command on macOS, and it brings the font renderer along with it so the first thing you run doesn't stop halfway.
+
+### ✨ New
+- See every mode as you type. `/mkpub` now shows its full list of options in the prompt, so you can pick one without remembering the names or going back to the docs.
+- Ask mkpub what it does. `/mkpub --help` prints each mode with a one-line description of what it writes — and it answers instantly, without reading your repo or asking you anything.
+- Install on macOS in one command, from anywhere. It sets mkpub up for every project on your machine and installs the font renderer if you don't have it, so `--readme` works the first time you try it. Running it again upgrades what's already there.
+
+### 📈 Improved
+- The install instructions now say upfront that the quickest route doesn't include the font renderer, and how to add it — so you find out before a header fails to render rather than after.
+
+### 🐛 Fixed
+- Asking for everything at once no longer risks writing your README before the files it links to exist.
+
 ## v1.0.0 — 2026-07-17
 
 > mkpub is here. Point it at a repository and it writes the four files a stranger needs when they land on your project cold — a README, a license, a security policy, and an index for AI agents — by reading the repo itself rather than asking you to describe it. It was built for skill repos, where the product is markdown and there's no package to point at, but it works anywhere.
