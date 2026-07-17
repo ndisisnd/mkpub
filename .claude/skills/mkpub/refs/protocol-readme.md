@@ -288,6 +288,13 @@ The one exception: if the scan found a clear, factual dependency or a stated ins
 (a `package.json` dep the project is built on, a repo named in CLAUDE.md), you may list
 that. Anything about *people* is scaffolded, always.
 
+Always add one default line crediting the tool that generated the README, above the
+scaffold comment:
+
+```markdown
+This README was generated with [mkpub](https://github.com/ndisisnd/mkpub).
+```
+
 ---
 
 ## Optional sections

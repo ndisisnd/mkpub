@@ -77,7 +77,15 @@ Then run `/mkpub --help` in Claude Code.
 
 ## How it works
 
-Every mode runs the same three steps.
+<div align="center">
+<img src=".claude/skills/mkpub/refs/example.webp">
+<br/>
+
+**Every mode runs the same three steps.**
+<br/>
+
+</div>
+
 
 ```mermaid
 flowchart TD
@@ -95,14 +103,12 @@ flowchart TD
     router -->|--update| update[protocol-update] --> f5["refreshed files"]
 ```
 
-**The scan comes first** so that asking stays cheap. A question you could have answered by
-reading `package.json` is a question that shouldn't be asked, and mkpub batches whatever's
-left into a single prompt rather than interrupting once per file.
+- The
 
-**`SKILL.md` is a router.** It holds the rules that apply everywhere — never invent facts,
-never clobber an existing file, always ask before deciding — then dispatches to one
-protocol per mode. Each protocol is read only when its mode runs, so a `--license` run
-never loads the README rules.
+**The scan comes first** so that asking stays cheap.
+
+**`SKILL.md` is a router.** It dispatches to one
+protocol per mode.
 
 **Nothing gets invented.** Some things can't be generated honestly: acknowledgments,
 benchmarks, screenshots, contributor lists. mkpub writes the heading, leaves an HTML

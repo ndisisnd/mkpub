@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented here.
 
+## 2026-07-18
+
+### [5] — See a real example screenshot, and get automatic credit when mkpub writes your README
+
+- `README.md`: Added — an example screenshot in the how-it-works section
+  - Changed — trimmed the how-it-works prose
+- `.claude/skills/mkpub/refs/protocol-readme.md`: Added — a default Acknowledgments line crediting mkpub with a hyperlink to its repo, added to every generated README
+- `.claude/skills/mkpub/refs/example.webp`: Added — the example screenshot asset
+
 ## 2026-07-17
 
 ### [4] — Read what shipped in v1.1.0 without digging through commits
