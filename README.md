@@ -103,8 +103,6 @@ flowchart TD
     router -->|--update| update[protocol-update] --> f5["refreshed files"]
 ```
 
-- The
-
 **The scan comes first** so that asking stays cheap.
 
 **`SKILL.md` is a router.** It dispatches to one
